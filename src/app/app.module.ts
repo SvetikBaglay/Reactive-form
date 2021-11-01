@@ -3,18 +3,20 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FormsComponent } from './components/forms/forms.component';
-import { FormDetailsComponent } from './components/form-details/form-details.component';
+import { ClientFormComponent } from './components/client-form/client-form.component';
+import { ClientAddressFormComponent } from './components/client-address-form/client-address-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FormsComponent,
-    FormDetailsComponent,
+    ClientFormComponent,
+    ClientAddressFormComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

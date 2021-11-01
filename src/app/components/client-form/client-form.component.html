@@ -1,0 +1,59 @@
+<div class="card">
+  <div class="head p-3">
+    <h1>Form for you</h1>
+  </div>
+  <div class="card-body">
+    <form  [formGroup]="clientForm" (ngSubmit)="save()" class="form-templaits ">
+
+      <div class="form-group row mb-2">
+        <label for="firstName">First name</label>
+        <div class="col-md-8">
+          <input id="firstName" type="text" formControlName="firstName" required placeholder="First name"/>
+        </div>
+      </div>
+
+      <div class="form-group row mb-2">
+        <label for="lastName">Last name</label>
+        <div class="col-md-8">
+          <input id="lastName" type="text" formControlName="lastName" required placeholder="Last name"/>
+        </div>
+      </div>
+
+      <div class="form-group row mb-2">
+        <label for="email">Your email</label>
+        <div class="col-md-8">
+          <input id="email" type="email" formControlName="email" required placeholder="Your email"/>
+        </div>
+      </div>
+
+      <div class="form-group row mb-2">
+        <label for="password">Password</label>
+        <div class="col-md-8">
+          <input id="password" type="password" formControlName="password" required placeholder="Your password"/>
+        </div>
+      </div>  
+      
+      <div class="form-group row mb-2">
+        <label for="retryPassword">Retry Password please</label>
+        <div class="col-md-8">
+          <input id="retryPassword" type="password" formControlName="retryPassword" required placeholder="Retry Password please"/>
+        </div>
+      </div>
+
+
+      <ng-container formArrayName="addresses">
+        <ng-container *ngFor="let addressForm of addresses.controls; let i = index">
+          <ng-container [formGroup]="asFormGroup(addressForm)">
+            <app-client-address-form></app-client-address-form>
+          </ng-container>
+        </ng-container>
+      </ng-container>
+      <button class="btn btn-info m-2" (click)="onAddAddress($event)">Add address</button>
+
+      <button class="btn btn-primary m-2">Save</button>
+
+    </form>
+  </div>
+</div>
+
+
