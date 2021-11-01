@@ -1,4 +1,4 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { AbstractControl, Form, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -8,7 +8,7 @@ import { AbstractControl, Form, FormArray, FormBuilder, FormGroup, Validators } 
 })
 export class ClientFormComponent implements OnInit {
   clientForm!: FormGroup;
-
+ 
   constructor(private fb: FormBuilder) { }
 
   save() {

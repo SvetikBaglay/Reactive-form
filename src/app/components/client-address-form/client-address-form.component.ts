@@ -1,7 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormGroup, FormBuilder, AbstractControl, FormGroupDirective } from '@angular/forms';
-import { IClientAdress } from 'src/app/client-interface';
-import { Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-client-address-form',
