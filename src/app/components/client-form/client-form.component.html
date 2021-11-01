@@ -41,14 +41,11 @@
       </div>
 
 
-      <ng-container formArrayName="addresses">
-        <ng-container *ngFor="let addressForm of addresses.controls; let i = index">
-          <ng-container [formGroup]="asFormGroup(addressForm)">
-            <app-client-address-form></app-client-address-form>
-          </ng-container>
-        </ng-container>
-      </ng-container>
-      <button class="btn btn-info m-2" (click)="onAddAddress($event)">Add address</button>
+   
+        
+      <app-client-address-form *ngFor="let addressesForm of addresses.controls; let i = index"></app-client-address-form>
+      
+      <button class="btn btn-info m-2" (click)="addAddress()">Add address</button>
 
       <button class="btn btn-primary m-2">Save</button>
 
