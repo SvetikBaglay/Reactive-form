@@ -11,6 +11,10 @@ import { Validators } from '@angular/forms';
 export class ClientAddressFormComponent implements OnInit {
   form!: FormGroup
   
+  get city() { return this.form.get('city'); }
+
+  get street() { return this.form.get('street'); }
+
   constructor(private addressForm: FormGroupDirective) { }
 
   ngOnInit(): void {

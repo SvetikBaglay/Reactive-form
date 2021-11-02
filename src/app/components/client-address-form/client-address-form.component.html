@@ -1,5 +1,18 @@
 <div class="card" [formGroup]="form">
-  <input id="city" type="text" formControlName="city" required placeholder="Your city"/>
-  <input id="street" type="text" formControlName="street" required placeholder="Your street"/>
+  <div>
+    <input class="form-control" id="city" type="text" formControlName="city" required placeholder="Your city"/>
+
+    <div *ngIf="city !== null && city.invalid && (city.dirty || city.touched)" class="alert alert-danger">
+      <div *ngIf="city.errors?.required">Last name is required.</div>
+    </div>
+  </div>
+
+  <div>
+    <input class="form-control" id="street" type="text" formControlName="street" required placeholder="Your street"/>
+
+    <div *ngIf="street !== null && street.invalid && (street.dirty || street.touched)" class="alert alert-danger">
+      <div *ngIf="street.errors?.required">Last name is required.</div>
+    </div>
+  </div>
 </div>
 
