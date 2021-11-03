@@ -1,5 +1,6 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { AbstractControl, Form, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MustMatch } from 'src/app/services/validator-mustMatch';
 
 @Component({
   selector: 'app-client-form',
@@ -9,26 +10,9 @@ import { AbstractControl, Form, FormArray, FormBuilder, FormGroup, Validators } 
 export class ClientFormComponent implements OnInit {
   clientForm!: FormGroup;
 
-  // clientForm = this.fb.group({
-  //   firstName: ['', [Validators.required, Validators.min(5)]],
-  //   lastName: [''],
-  //   email: [''],
-  //   password: [''],
-  //   retryPassword: [''],
-  //   addresses: this.fb.array([]),
-  // });
-
   constructor(private fb: FormBuilder) { }
 
-  get firstName() { return this.clientForm.get('firstName'); }
-
-  get lastName () {  return this.clientForm.get('lastName'); }
-
-  get email() { return this.clientForm.get('email'); }
-
-  get password() { return this.clientForm.get('password'); }
-
-  get retryPassword() { return this.clientForm.get('retryPassword'); }
+  get f() { return this.clientForm.controls; }
 
   save() {
     console.log('values: ', this.clientForm.value);    
@@ -49,17 +33,23 @@ export class ClientFormComponent implements OnInit {
   }
   
   ngOnInit(): void {
-    this.clientForm = this.fb.group({
+    this.clientForm = this.fb.group(
+      {
       firstName: ['', [Validators.required, Validators.minLength(5)]],
       lastName: ['', [Validators.required, Validators.minLength(10)]],
       email: ['', [Validators.required, Validators.pattern('^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$')]],
-      password: ['', [Validators.required,  Validators.minLength(10), Validators.pattern('^[A-Za-z0-9]+$')]],
-      retryPassword: [''],
+      password: ['',[Validators.required, Validators.minLength(10)]],
+      confirmPassword: ["", Validators.required],
       addresses: this.fb.array([]),
-    });
+      },
+      {
+        validator: MustMatch('password', 'confirmPassword')
+      }
+    );
   }
 
   get addresses() {
     return this.clientForm.controls["addresses"] as FormArray;
   }
 }
+
